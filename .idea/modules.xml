@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/TUKE-Explo.iml" filepath="$PROJECT_DIR$/.idea/TUKE-Explo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TUKE-explo-backend.iml" filepath="$PROJECT_DIR$/.idea/TUKE-explo-backend.iml" />
     </modules>
   </component>
 </project>
