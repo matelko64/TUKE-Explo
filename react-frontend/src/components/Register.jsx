@@ -1,32 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Register() {
     const [player, setPlayer] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
+    const handleRegister = async () => {
         try {
-            const res = await axios.post("http://localhost:8080/api/register/login", {
+            const res = await axios.post("http://localhost:8080/api/register", {
                 player,
                 password
             });
-            if (res.data === true) {
-                navigate("/welcome");
+            if (res.status === 200) {
+                alert("Registration successful!");
+                navigate("/login");
             } else {
-                alert("Login failed.");
+                alert("Registration failed.");
             }
         } catch (err) {
-            console.error("Error during login:", err);
+            console.error("Error during registration:", err);
             alert("Server error.");
         }
     };
 
     return (
         <div>
-            <h2>Login</h2>
+            <h2>Register</h2>
             <input
                 type="text"
                 placeholder="Player"
@@ -39,13 +40,9 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <button onClick={handleLogin}>Login</button>
-
-            <p>
-                Nemáš účet? <Link to="/register">Zaregistruj sa</Link>
-            </p>
+            <button onClick={handleRegister}>Register</button>
         </div>
     );
 }
 
-export default Login;
+export default Register;
