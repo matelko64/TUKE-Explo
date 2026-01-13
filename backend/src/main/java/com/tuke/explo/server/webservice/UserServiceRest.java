@@ -23,4 +23,37 @@ public class UserServiceRest {
     public boolean login(@RequestBody User user){
         return userService.login(user.getPlayer(), user.getPassword());
     }
+
+    @PostMapping("/addXp")
+    public void addXp(@RequestBody AddXpRequest request) {
+        userService.addXp(request.getPlayer(), request.getAmount());
+    }
+
+    @GetMapping("/questLine/{player}")
+    public int getQuestLine(@PathVariable String player) {
+        return userService.getQuestLine(player);
+    }
+
+    @PostMapping("/moveQuestLine")
+    public void moveQuestLine(@RequestBody PlayerRequest request) {
+        userService.moveQuestLine(request.getPlayer());
+    }
+
+    // Inner classes for request bodies
+    public static class AddXpRequest {
+        private String player;
+        private int amount;
+
+        public String getPlayer() { return player; }
+        public void setPlayer(String player) { this.player = player; }
+        public int getAmount() { return amount; }
+        public void setAmount(int amount) { this.amount = amount; }
+    }
+
+    public static class PlayerRequest {
+        private String player;
+
+        public String getPlayer() { return player; }
+        public void setPlayer(String player) { this.player = player; }
+    }
 }

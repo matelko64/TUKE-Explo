@@ -46,4 +46,28 @@ public class UserServiceJPA implements UserService {
             return null;
         }
     }
+
+    @Override
+    public void addXp(String player, int amount) {
+        User user = entityManager.find(User.class, player);
+        if (user != null) {
+            user.addXp(amount);
+            entityManager.merge(user);
+        }
+    }
+
+    @Override
+    public int getQuestLine(String player) {
+        User user = entityManager.find(User.class, player);
+        return user != null ? user.getQuestLine() : 0;
+    }
+
+    @Override
+    public void moveQuestLine(String player) {
+        User user = entityManager.find(User.class, player);
+        if (user != null) {
+            user.moveQuestLine();
+            entityManager.merge(user);
+        }
+    }
 }
