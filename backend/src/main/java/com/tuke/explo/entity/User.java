@@ -11,12 +11,18 @@ public class User implements Serializable {
 
     private String password;
 
+    private Integer xp;
+
+    private Integer questLine;
+
     public User(){
     }
 
-    public User(String player, String password){
+    public User(String player, String password) {
         this.player = player;
         this.password = password;
+        this.xp = 0;
+        this.questLine = 0;
     }
 
     public String getPlayer(){
@@ -26,6 +32,14 @@ public class User implements Serializable {
     public String getPassword(){
         return password;
     }
+
+    public Integer getXp(){ return xp; }
+
+    public Integer getQuestLine(){return questLine; }
+
+    public void moveQuestLine(Integer questLine){this.questLine++; }
+
+    public void addXp(Integer xp){this.xp += xp; }
 
     public void setPlayer(String player) {
         this.player = player;
