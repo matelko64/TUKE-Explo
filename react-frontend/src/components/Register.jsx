@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button, TextField } from '@mui/material';
 
 function Register() {
     const [player, setPlayer] = useState("");
@@ -26,22 +27,23 @@ function Register() {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <input
-                type="text"
-                placeholder="Player"
+        <form onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
+            <h2>Registrácia</h2>
+            <TextField
+                label="Prezývka"
+                variant="outlined"
                 value={player}
                 onChange={(e) => setPlayer(e.target.value)}
-            />
-            <input
+            /><br /><br />
+            <TextField
+                label="Heslo"
                 type="password"
-                placeholder="Password"
+                variant="outlined"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleRegister}>Register</button>
-        </div>
+            /><br /><br />
+            <Button type="submit" variant="contained" color="primary">Registrovať sa</Button>
+        </form>
     );
 }
 

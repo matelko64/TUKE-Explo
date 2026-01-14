@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Button, TextField, Paper, Typography, Box } from '@mui/material';
 
-function Welcome() {
+function Main() {
     const [quests] = useState([
         { id: 0, requirement: "Complete 5 assignments", xp: 100, phrase: "test" },
         { id: 1, requirement: "Attend 3 lectures", xp: 200, phrase: "test" },
@@ -76,59 +77,50 @@ function Welcome() {
         }
     };
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div><br />Načítava sa...</div>;
 
     const currentQuest = quests[currentQuestLine];
 
     return (
-        <div style={{ position: 'relative', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <h2>Welcome, you are logged in!</h2>
+        <Box sx={{ position: 'relative', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {currentQuest ? (
-                <div style={{
+                <Paper sx={{
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    border: '2px solid #333',
-                    borderRadius: '10px',
-                    padding: '20px',
-                    backgroundColor: '#f9f9f9',
-                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                    width: '300px',
+                    p: 3,
+                    width: 300,
                     textAlign: 'center'
                 }}>
-                    <h3>Current Quest</h3>
-                    <p><strong>{currentQuest.requirement}</strong></p>
-                    <p>Reward: {currentQuest.xp} XP</p>
-                    <input
-                        type="text"
+                    <Typography variant="h5" gutterBottom>Current Quest</Typography>
+                    <Typography variant="body1" sx={{ mb: 1 }}><strong>{currentQuest.requirement}</strong></Typography>
+                    <Typography variant="body2" sx={{ mb: 2 }}>Reward: {currentQuest.xp} XP</Typography>
+                    <TextField
+                        fullWidth
+                        label="Enter completion phrase"
                         value={phraseInput}
                         onChange={(e) => setPhraseInput(e.target.value)}
-                        placeholder="Enter completion phrase"
-                        style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+                        sx={{ mb: 2 }}
                     />
-                    <button onClick={completeQuest}>Complete Quest</button>
-                </div>
+                    <Button variant="contained" color="primary" onClick={completeQuest}>Complete Quest</Button>
+                </Paper>
             ) : (
-                <div style={{
+                <Paper sx={{
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    border: '2px solid #333',
-                    borderRadius: '10px',
-                    padding: '20px',
-                    backgroundColor: '#f9f9f9',
-                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                    width: '300px',
+                    p: 3,
+                    width: 300,
                     textAlign: 'center'
                 }}>
-                    <h3>All Quests Completed!</h3>
-                    <p>Congratulations!</p>
-                </div>
+                    <Typography variant="h5" gutterBottom>All Quests Completed!</Typography>
+                    <Typography variant="body1">Congratulations!</Typography>
+                </Paper>
             )}
-        </div>
+        </Box>
     );
 }
 
-export default Welcome;
+export default Main;
