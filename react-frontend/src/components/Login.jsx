@@ -14,6 +14,7 @@ function Login() {
                 password
             });
             if (res.data === true) {
+                localStorage.setItem("player", player);
                 navigate("/welcome");
             } else {
                 alert("Login failed.");

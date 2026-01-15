@@ -37,9 +37,13 @@ public class User implements Serializable {
 
     public Integer getQuestLine(){return questLine; }
 
-    public void moveQuestLine(Integer questLine){this.questLine++; }
+    public void moveQuestLine(){
+        this.questLine = (this.questLine != null ? this.questLine : 0) + 1;
+    }
 
-    public void addXp(Integer xp){this.xp += xp; }
+    public void addXp(Integer xp){
+        this.xp = (this.xp != null ? this.xp : 0) + xp;
+    }
 
     public void setPlayer(String player) {
         this.player = player;
