@@ -9,7 +9,7 @@ function Register() {
 
     const handleRegister = async () => {
         try {
-            const res = await axios.post("http://localhost:8080/api/register", {
+            const res = await axios.post("https://tuke-explo-2.onrender.com/api/register", {
                 player,
                 password
             });

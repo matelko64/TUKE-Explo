@@ -9,7 +9,7 @@ function Login() {
 
     const handleLogin = async () => {
         try {
-            const res = await axios.post("http://localhost:8080/api/register/login", {
+            const res = await axios.post("https://tuke-explo-2.onrender.com/api/register/login", {
                 player,
                 password
             });
