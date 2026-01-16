@@ -11,7 +11,6 @@ function Main() {
         { id: 4, requirement: "Read 2 research papers", xp: 125, phrase: "test" },
         { id: 5, requirement: "Read 2 research papers", xp: 125, phrase: "test" }
     ]);
-
     const [currentQuestLine, setCurrentQuestLine] = useState(0);
     const [loading, setLoading] = useState(true);
     const [phraseInput, setPhraseInput] = useState("");
@@ -42,13 +41,12 @@ function Main() {
         }
 
         if (phraseInput.trim().toLowerCase() !== quest.phrase.toLowerCase()) {
-            alert("Incorrect phrase. Try again.");
+            alert("Nesprávna odpoveď.");
             return;
         }
 
         try {
             console.log("Adding XP...");
-            // Add XP
             await axios.post("http://localhost:8080/api/register/addXp", {
                 player,
                 amount: quest.xp
@@ -56,15 +54,14 @@ function Main() {
             console.log("XP added successfully");
 
             console.log("Moving quest line...");
-            // Move quest line
             await axios.post("http://localhost:8080/api/register/moveQuestLine", {
                 player
             });
             console.log("Quest line moved successfully");
 
             setCurrentQuestLine(prev => prev + 1);
-            setPhraseInput(""); // Clear input
-            alert(`Quest completed! Gained ${quest.xp} XP.`);
+            setPhraseInput("");
+            alert(`Úloha dokončená! Získal si ${quest.xp} XP.`);
         } catch (err) {
             console.error("Error completing quest:", err);
             console.error("Error details:", {
@@ -78,7 +75,11 @@ function Main() {
     };
 
     if (loading) return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+        <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '60vh' }}>
             <div>Načítava sa...</div>
         </Box>
     );
@@ -97,17 +98,16 @@ function Main() {
                     width: 300,
                     textAlign: 'center'
                 }}>
-                    <Typography variant="h5" gutterBottom>Current Quest</Typography>
-                    <Typography variant="body1" sx={{ mb: 1 }}><strong>{currentQuest.requirement}</strong></Typography>
-                    <Typography variant="body2" sx={{ mb: 2 }}>Reward: {currentQuest.xp} XP</Typography>
+                    <Typography variant="h6" sx={{ mb: 1 }}>{currentQuest.requirement}</Typography>
+                    <Typography variant="body2" sx={{ mb: 2 }}>{currentQuest.xp} XP</Typography>
                     <TextField
                         fullWidth
-                        label="Enter completion phrase"
+                        label="Správna odpoveď"
                         value={phraseInput}
                         onChange={(e) => setPhraseInput(e.target.value)}
                         sx={{ mb: 2 }}
                     />
-                    <Button variant="contained" color="primary" onClick={completeQuest}>Complete Quest</Button>
+                    <Button variant="contained" color="primary" onClick={completeQuest}>Potvrdiť</Button>
                 </Paper>
             ) : (
                 <Paper sx={{
@@ -119,8 +119,8 @@ function Main() {
                     width: 300,
                     textAlign: 'center'
                 }}>
-                    <Typography variant="h5" gutterBottom>All Quests Completed!</Typography>
-                    <Typography variant="body1">Congratulations!</Typography>
+                    <Typography variant="h5" gutterBottom>Blahoželáme!</Typography>
+                    <Typography variant="body1">Všetky hlavné úlohy si dokončil!</Typography>
                 </Paper>
             )}
         </Box>
