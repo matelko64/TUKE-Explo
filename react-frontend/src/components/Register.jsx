@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Box } from '@mui/material';
 
 function Register() {
     const [player, setPlayer] = useState("");
@@ -27,21 +27,29 @@ function Register() {
     };
 
     return (
-        <form onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
+        <form
+            onSubmit={(e) => { e.preventDefault(); handleRegister(); }}
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '60vh'
+            }}>
             <h2>Registrácia</h2>
             <TextField
                 label="Prezývka"
                 variant="outlined"
                 value={player}
                 onChange={(e) => setPlayer(e.target.value)}
-            /><br /><br />
+            /><br />
             <TextField
                 label="Heslo"
                 type="password"
                 variant="outlined"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-            /><br /><br />
+            /><br />
             <Button type="submit" variant="contained" color="primary">Registrovať sa</Button>
         </form>
     );

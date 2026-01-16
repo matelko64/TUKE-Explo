@@ -77,12 +77,16 @@ function Main() {
         }
     };
 
-    if (loading) return <div><br />Načítava sa...</div>;
+    if (loading) return (
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+            <div>Načítava sa...</div>
+        </Box>
+    );
 
     const currentQuest = quests[currentQuestLine];
 
     return (
-        <Box sx={{ position: 'relative', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Box sx={{ position: 'relative', height: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {currentQuest ? (
                 <Paper sx={{
                     position: 'absolute',
