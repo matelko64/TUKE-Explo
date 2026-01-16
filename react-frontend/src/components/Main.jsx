@@ -61,7 +61,7 @@ function Main() {
 
             setCurrentQuestLine(prev => prev + 1);
             setPhraseInput("");
-            alert(`Úloha dokončená! Získal si ${quest.xp} XP.`);
+            alert(`Úloha splnená! Získal si ${quest.xp} XP.`);
         } catch (err) {
             console.error("Error completing quest:", err);
             console.error("Error details:", {
@@ -120,7 +120,7 @@ function Main() {
                     textAlign: 'center'
                 }}>
                     <Typography variant="h5" gutterBottom>Blahoželáme!</Typography>
-                    <Typography variant="body1">Všetky hlavné úlohy si dokončil!</Typography>
+                    <Typography variant="body1">Všetky hlavné úlohy si splnil!</Typography>
                 </Paper>
             )}
         </Box>
