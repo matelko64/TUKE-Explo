@@ -2,11 +2,10 @@ import React from 'react';
 import { Typography, Box, Paper, List, ListItem, ListItemText } from '@mui/material';
 
 function Achievements() {
-    // Placeholder achievements
+    const a = (id, name, description) => ({id, name, description});
     const achievements = [
-        { id: 1, name: "First Quest Completed", description: "Completed your first quest" },
-        { id: 2, name: "XP Master", description: "Earned 500 XP" },
-        // Add more achievements
+        a(0, "Malý krok pre človeka, malý krok pre ľudstvo", "Splň jednu úlohu."),
+        a(1, "...sedem osem, devať desať", "Splň desať úloh")
     ];
 
     return (

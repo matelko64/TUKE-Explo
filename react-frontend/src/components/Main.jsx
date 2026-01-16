@@ -3,13 +3,14 @@ import axios from "axios";
 import { Button, TextField, Paper, Typography, Box } from '@mui/material';
 
 function Main() {
+    const q = (id, requirement, xp, phrase) =>({id, requirement, xp, phrase});
     const [quests] = useState([
-        { id: 0, requirement: "Complete 5 assignments", xp: 100, phrase: "test" },
-        { id: 1, requirement: "Attend 3 lectures", xp: 200, phrase: "test" },
-        { id: 2, requirement: "Submit a project proposal", xp: 150, phrase: "test" },
-        { id: 3, requirement: "Participate in a group discussion", xp: 75, phrase: "test" },
-        { id: 4, requirement: "Read 2 research papers", xp: 125, phrase: "test" },
-        { id: 5, requirement: "Read 2 research papers", xp: 125, phrase: "test" }
+        q(0, "úloha 1", 100, "odpoved"),
+        q(1, "úloha 2", 200, "odpoved"),
+        q(2, "úloha 3", 300, "odpoved"),
+        q(3, "úloha 4", 400, "odpoved"),
+        q(4, "úloha 5", 500, "odpoved"),
+        q(5, "úloha 6", 600, "odpoved")
     ]);
     const [currentQuestLine, setCurrentQuestLine] = useState(0);
     const [loading, setLoading] = useState(true);
