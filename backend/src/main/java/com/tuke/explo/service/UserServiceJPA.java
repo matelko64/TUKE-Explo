@@ -57,16 +57,16 @@ public class UserServiceJPA implements UserService {
     }
 
     @Override
-    public int getQuestLine(String player) {
+    public int getQuestline(String player) {
         User user = entityManager.find(User.class, player);
-        return user != null ? user.getQuestLine() : 0;
+        return user != null ? user.getQuestline() : 0;
     }
 
     @Override
-    public void moveQuestLine(String player) {
+    public void moveQuestline(String player) {
         User user = entityManager.find(User.class, player);
         if (user != null) {
-            user.moveQuestLine();
+            user.moveQuestline();
             entityManager.merge(user);
         }
     }

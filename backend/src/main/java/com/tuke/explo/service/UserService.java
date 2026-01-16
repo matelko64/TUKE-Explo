@@ -7,6 +7,6 @@ public interface UserService {
     boolean login(String player, String password);
     User getUser(String player, String password);
     void addXp(String player, int amount);
-    int getQuestLine(String player);
-    void moveQuestLine(String player);
+    int getQuestline(String player);
+    void moveQuestline(String player);
 }

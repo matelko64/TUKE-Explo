@@ -16,6 +16,14 @@ function Login() {
             });
             if (res.data === true) {
                 localStorage.setItem("player", player);
+                if (player) {
+                    try {
+                        const res = await axios.get(`http://localhost:8080/api/register/questline/${player}`);
+                        localStorage.setItem("questline", res.data);
+                    } catch (err) {
+                        console.error("Error fetching questline:", err);
+                    }
+                }
                 navigate("/main");
             } else {
                 alert("Login failed.");

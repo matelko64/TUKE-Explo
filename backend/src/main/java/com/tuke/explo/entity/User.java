@@ -13,7 +13,7 @@ public class User implements Serializable {
 
     private Integer xp;
 
-    private Integer questLine;
+    private Integer questline;
 
     public User(){
     }
@@ -22,7 +22,7 @@ public class User implements Serializable {
         this.player = player;
         this.password = password;
         this.xp = 0;
-        this.questLine = 0;
+        this.questline = 0;
     }
 
     public String getPlayer(){
@@ -35,10 +35,10 @@ public class User implements Serializable {
 
     public Integer getXp(){ return xp; }
 
-    public Integer getQuestLine(){return questLine; }
+    public Integer getQuestline(){return questline; }
 
-    public void moveQuestLine(){
-        this.questLine = (this.questLine != null ? this.questLine : 0) + 1;
+    public void moveQuestline(){
+        this.questline = (this.questline != null ? this.questline : 0) + 1;
     }
 
     public void addXp(Integer xp){
