@@ -1,13 +1,13 @@
 package com.tuke.explo.service;
 
 import com.tuke.explo.entity.User;
-import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
+
 @Service
 @Transactional
 public class UserServiceJPA implements UserService {
