@@ -9,7 +9,6 @@ public class User implements Serializable {
     @Id
     private String player;
     private String password;
-    @Column(name = "questline")
     private int questline;
     private int xp;
 
