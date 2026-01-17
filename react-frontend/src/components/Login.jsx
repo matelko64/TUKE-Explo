@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { Button, TextField, Box } from "@mui/material";
 
 function Login() {
     const [player, setPlayer] = useState("");
@@ -15,7 +16,15 @@ function Login() {
             });
             if (res.data === true) {
                 localStorage.setItem("player", player);
-                navigate("/welcome");
+                if (player) {
+                    try {
+                        const res = await axios.get(`http://localhost:8080/api/register/questline/${player}`);
+                        localStorage.setItem("questline", res.data);
+                    } catch (err) {
+                        console.error("Error fetching questline:", err);
+                    }
+                }
+                navigate("/main");
             } else {
                 alert("Login failed.");
             }
@@ -26,26 +35,34 @@ function Login() {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <input
-                type="text"
-                placeholder="Player"
+        <form
+            onSubmit={(e) => { e.preventDefault(); handleLogin(); }}
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '60vh'
+            }}>
+            <h2>Prihlásenie</h2>
+            <TextField
+                label="Prezývka"
+                variant="outlined"
                 value={player}
                 onChange={(e) => setPlayer(e.target.value)}
-            />
-            <input
+            /><br />
+            <TextField
+                label="Heslo"
                 type="password"
-                placeholder="Password"
+                variant="outlined"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleLogin}>Login</button>
-
+            /><br />
+            <Button type="submit" variant="contained" color="primary">Prihlásiť sa</Button>
             <p>
                 Nemáš účet? <Link to="/register">Zaregistruj sa</Link>
             </p>
-        </div>
+        </form>
     );
 }
 

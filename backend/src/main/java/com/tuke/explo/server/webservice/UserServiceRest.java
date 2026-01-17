@@ -29,14 +29,14 @@ public class UserServiceRest {
         userService.addXp(request.getPlayer(), request.getAmount());
     }
 
-    @GetMapping("/questLine/{player}")
-    public int getQuestLine(@PathVariable String player) {
-        return userService.getQuestLine(player);
+    @GetMapping("/questline/{player}")
+    public int getQuestline(@PathVariable String player) {
+        return userService.getQuestline(player);
     }
 
-    @PostMapping("/moveQuestLine")
-    public void moveQuestLine(@RequestBody PlayerRequest request) {
-        userService.moveQuestLine(request.getPlayer());
+    @PostMapping("/moveQuestline")
+    public void moveQuestline(@RequestBody PlayerRequest request) {
+        userService.moveQuestline(request.getPlayer());
     }
 
     // Inner classes for request bodies
