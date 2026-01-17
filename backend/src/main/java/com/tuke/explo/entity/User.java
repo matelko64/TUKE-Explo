@@ -13,6 +13,8 @@ public class User implements Serializable {
     private int xp;
 
     public User(){
+        this.questline = 0;
+        this.xp = 0;
     }
 
     public User(String player, String password) {
