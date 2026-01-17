@@ -16,6 +16,8 @@ public class UserServiceRest {
 
     @PostMapping
     public void setUser(@RequestBody User user){
+        user.setXp(0);
+        user.setQuestline(0);
         userService.setUser(user);
     }
 
