@@ -16,7 +16,7 @@ function Register() {
             });
             if (res.status === 200) {
                 alert("Registration successful!");
-                navigate("/login");
+                navigate("");
             } else {
                 alert("Registration failed.");
             }

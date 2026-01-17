@@ -1,10 +1,9 @@
 package com.tuke.explo.server.webservice;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import com.tuke.explo.entity.User;
 import com.tuke.explo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/register")
@@ -39,7 +38,6 @@ public class UserServiceRest {
         userService.moveQuestline(request.getPlayer());
     }
 
-    // Inner classes for request bodies
     public static class AddXpRequest {
         private String player;
         private int amount;

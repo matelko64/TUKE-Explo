@@ -8,12 +8,9 @@ import java.io.Serializable;
 public class User implements Serializable {
     @Id
     private String player;
-
     private String password;
-
-    private Integer xp;
-
-    private Integer questline;
+    private int questline;
+    private int xp;
 
     public User(){
     }
@@ -21,35 +18,27 @@ public class User implements Serializable {
     public User(String player, String password) {
         this.player = player;
         this.password = password;
-        this.xp = 0;
         this.questline = 0;
+        this.xp = 0;
     }
 
-    public String getPlayer(){
-        return player;
-    }
+    public void moveQuestline(){this.questline++;}
 
-    public String getPassword(){
-        return password;
-    }
+    public void addXp(int xp){this.xp += xp;}
 
-    public Integer getXp(){ return xp; }
+    public String getPlayer(){return player;}
 
-    public Integer getQuestline(){return questline; }
+    public String getPassword(){return password;}
 
-    public void moveQuestline(){
-        this.questline = (this.questline != null ? this.questline : 0) + 1;
-    }
+    public int getQuestline(){return questline;}
 
-    public void addXp(Integer xp){
-        this.xp = (this.xp != null ? this.xp : 0) + xp;
-    }
+    public int getXp(){return xp;}
 
-    public void setPlayer(String player) {
-        this.player = player;
-    }
+    public void setPlayer(String player){this.player = player;}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password){this.password = password;}
+
+    public void setQuestline(int questline){this.questline = questline;}
+
+    public void setXp(int xp){this.xp = xp;}
 }
