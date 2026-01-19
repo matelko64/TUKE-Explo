@@ -19,7 +19,7 @@ function Main() {
     const player = localStorage.getItem("player");
 
     const completeQuest = async () => {
-        const questline = localStorage.getItem("questline");
+        const questline = parseInt(localStorage.getItem("questline"));
         const quest = quests[questline];
         
         console.log("Attempting to complete quest:", {player, quest, questline, phraseInput});
@@ -62,7 +62,7 @@ function Main() {
         }
     };
 
-    const quest = quests[localStorage.getItem("questline")];
+    const quest = quests[parseInt(localStorage.getItem("questline"))];
     console.log(quest)
 
     return (
