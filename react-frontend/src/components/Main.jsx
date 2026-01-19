@@ -3,7 +3,16 @@ import axios from "axios";
 import { Button, TextField, Paper, Typography } from '@mui/material';
 
 function Main() {
+    const aq = (id, name, description) => ({id, name, description});
+    const ax = (id, xp, name, description) => ({id, xp, name, description});
     const q = (id, requirement, xp, phrase) =>({id, requirement, xp, phrase});
+    const questAchievements = [
+        aq(0, "Malý krok pre človeka, malý krok pre ľudstvo", "Splň jednu úlohu."),
+        aq(1, "...sedem osem, devať desať", "Splň desať úloh.")
+    ];
+    const xpAchievements = [
+        ax(0, 500, "Skúseňák", "Získaj 500 XP.")
+    ];
     const quests = [
         q(0, "úloha 1", 100, "odpoved"),
         q(1, "úloha 2", 200, "odpoved"),
@@ -19,33 +28,37 @@ function Main() {
     const player = localStorage.getItem("player");
     var questline = parseInt(localStorage.getItem("questline"));
     var quest = quests[questline];
+    var xp = parseInt(localStorage.getItem("xp"));
 
     const completeQuest = async () => {
-        
-        console.log("Attempting to complete quest:", {player, quest, questline, phraseInput});
         if (!quest || !player) {
             console.error("Quest or player not found:", {quest, player});
             return;
         }
-
         if (phraseInput.trim().toLowerCase() !== quest.phrase.toLowerCase()) {
             alert("Nesprávna odpoveď.");
             return;
         }
 
         try {
-            console.log("Adding XP...");
             await axios.post("https://tuke-explo-2.onrender.com/api/register/addXp", {
                 player,
                 amount: quest.xp
             });
-            console.log("XP added successfully");
-
-            console.log("Moving questline...");
             await axios.post("https://tuke-explo-2.onrender.com/api/register/moveQuestline", {player});
-            console.log("Questline moved successfully");
             questline++;
-            localStorage.setItem("questline", questline)
+            localStorage.setItem("questline", questline);
+            const oldXp = xp;
+            xp+=quest.xp;
+            localStorage.setItem("xp", xp);
+            for (let i=0; i<xpAchievements.length; i++){
+                if(oldXp<xpAchievements[i].xp && xpAchievements[i].xp<=xp){
+                    await axios.post("https://tuke-explo-2.onrender.com/api/register/addAchievement", {
+                        player,
+                        achievement: [xpAchievements[i].name, xpAchievements[i].description]
+                    });
+                }
+            }
             setPhraseInput("");
             alert(`Úloha splnená! Získal si ${quest.xp} XP.`);
         } catch (err) {
