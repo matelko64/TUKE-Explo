@@ -4,7 +4,7 @@ import { Button, TextField, Paper, Typography, Box } from '@mui/material';
 
 function Main() {
     const q = (id, requirement, xp, phrase) =>({id, requirement, xp, phrase});
-    const [quests] = [
+    const quests = [
         q(0, "úloha 1", 100, "odpoved"),
         q(1, "úloha 2", 200, "odpoved"),
         q(2, "úloha 3", 300, "odpoved"),
@@ -12,15 +12,12 @@ function Main() {
         q(4, "úloha 5", 500, "odpoved"),
         q(5, "úloha 6", 600, "odpoved")
     ];
-    const [randomQuests] = [
+    const randomQuests = [
         q(0, "Nájdi miestnosť L9-B514 a zisti posledných 9 cifier vpravo dole na rozvrhu hodín.", 100, "123456789")
     ];
     const [phraseInput, setPhraseInput] = useState("");
     const player = localStorage.getItem("player");
     var questline = parseInt(localStorage.getItem("questline"));
-    console.log(questline);
-    console.log(questline*2);
-    console.log(quests[questline]);
     var quest = quests[questline];
 
     const completeQuest = async () => {
