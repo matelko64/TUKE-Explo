@@ -17,13 +17,14 @@ function Main() {
     ];
     const [phraseInput, setPhraseInput] = useState("");
     const player = localStorage.getItem("player");
-    const questline = localStorage.getItem("questline");
-    const quest = quests[questline];
 
     const completeQuest = async () => {
+        const questline = localStorage.getItem("questline");
+        const quest = quests[questline];
+        
         console.log("Attempting to complete quest:", {player, quest, questline, phraseInput});
         if (!quest || !player) {
-            console.error("Quest or player not found:", { quest, player });
+            console.error("Quest or player not found:", {quest, player});
             return;
         }
 
