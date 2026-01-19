@@ -63,7 +63,8 @@ function Main() {
     };
 
     const quest = quests[parseInt(localStorage.getItem("questline"))];
-    console.log(quest)
+    console.log(quest);
+    console.log(questline);
 
     return (
         <Box sx={{ position: 'relative', height: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
