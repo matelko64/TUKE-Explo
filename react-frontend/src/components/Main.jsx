@@ -62,6 +62,8 @@ function Main() {
         }
     };
 
+    const quest = quests[questline];
+
     return (
         <Box sx={{ position: 'relative', height: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {quest ? (
