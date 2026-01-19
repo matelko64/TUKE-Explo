@@ -17,10 +17,10 @@ function Main() {
     ];
     const [phraseInput, setPhraseInput] = useState("");
     const player = localStorage.getItem("player");
+    var questline = parseInt(localStorage.getItem("questline"));
+    var quest = quests[questline];
 
     const completeQuest = async () => {
-        const questline = parseInt(localStorage.getItem("questline"));
-        const quest = quests[questline];
         
         console.log("Attempting to complete quest:", {player, quest, questline, phraseInput});
         if (!quest || !player) {
@@ -35,16 +35,14 @@ function Main() {
 
         try {
             console.log("Adding XP...");
-            await axios.post("http://localhost:8080/api/register/addXp", {
+            await axios.post("https://tuke-explo-2.onrender.com/api/register/addXp", {
                 player,
                 amount: quest.xp
             });
             console.log("XP added successfully");
 
             console.log("Moving questline...");
-            await axios.post("http://localhost:8080/api/register/moveQuestline", {
-                player
-            });
+            await axios.post("https://tuke-explo-2.onrender.com/api/register/moveQuestline", {player});
             console.log("Questline moved successfully");
             questline++;
             localStorage.setItem("questline", questline)
@@ -61,8 +59,6 @@ function Main() {
             alert("Failed to complete quest.");
         }
     };
-
-    const quest = quests[parseInt(localStorage.getItem("questline"))];
     console.log(quest);
     console.log(parseInt(localStorage.getItem("questline")));
 
