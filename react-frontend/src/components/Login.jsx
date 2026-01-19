@@ -18,7 +18,7 @@ function Login() {
                 localStorage.setItem("player", player);
                 if (player) {
                     try {
-                        const res = await axios.get(`http://tuke-explo-2.onrender.com/api/register/questline/${player}`);
+                        const res = await axios.get(`https://tuke-explo-2.onrender.com/api/register/questline/${player}`);
                         localStorage.setItem("questline", res.data);
                     } catch (err) {
                         console.error("Error fetching questline:", err);
