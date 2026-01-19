@@ -9,9 +9,9 @@ function Achievements() {
             <Paper sx={{ p: 3, width: 400, textAlign: 'center' }}>
                 <Typography variant="h4" gutterBottom>Míľniky</Typography>
                 <List>
-                    {achievements.map(achievement => (
-                        <ListItem key={achievement.id}>
-                            <ListItemText primary={achievement.name} secondary={achievement.description} />
+                    {achievements.map((achievement, index) => (
+                        <ListItem key={index}>
+                            <ListItemText primary={achievement[0]} secondary={achievement[1]} />
                         </ListItem>
                     ))}
                 </List>

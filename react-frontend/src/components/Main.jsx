@@ -11,7 +11,8 @@ function Main() {
         aq(1, "...sedem osem, devať desať", "Splň desať úloh.")
     ];
     const xpAchievements = [
-        ax(0, 500, "Skúseňák", "Získaj 500 XP.")
+        ax(0, 500, "Skúseňák", "Získaj 500 XP."),
+        ax(1, 1000, "Šef", "Získaj 1000 XP.")
     ];
     const quests = [
         q(0, "úloha 1", 100, "odpoved"),
@@ -26,10 +27,10 @@ function Main() {
     ];
     const [phraseInput, setPhraseInput] = useState("");
     const player = localStorage.getItem("player");
+    var achievements = JSON.parse(localStorage.getItem("achievements"));
     var questline = parseInt(localStorage.getItem("questline"));
     var quest = quests[questline];
     var xp = parseInt(localStorage.getItem("xp"));
-    console.log("xpos: ", xp);
 
     const completeQuest = async () => {
         if (!quest || !player) {
@@ -53,12 +54,9 @@ function Main() {
             xp+=quest.xp;
             localStorage.setItem("xp", xp);
             for (let i=0; i<xpAchievements.length; i++){
-                console.log("cycle: ", i);
-                console.log("oldxp: ", oldXp);
-                console.log("xpAchiev: ", xpAchievements[i].xp);
-                console.log("xp: ", xp);
                 if (oldXp<xpAchievements[i].xp && xpAchievements[i].xp<=xp){
-                    console.log("sukses");
+                    achievements.push([xpAchievements[i].name, xpAchievements[i].description]);
+                    localStorage.setItem("achievements", JSON.stringify(achievements));
                     await axios.post("https://tuke-explo-2.onrender.com/api/register/addAchievement", {
                         player,
                         achievement: [xpAchievements[i].name, xpAchievements[i].description]

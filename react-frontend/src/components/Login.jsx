@@ -23,16 +23,12 @@ function Login() {
                     } catch (err) {
                         console.error("Error fetching questline:", err);
                     }
-                }
-                if (player) {
                     try {
                         const res = await axios.get(`https://tuke-explo-2.onrender.com/api/register/xp/${player}`);
                         localStorage.setItem("xp", res.data);
                     } catch (err) {
                         console.error("Error fetching xp:", err);
                     }
-                }
-                if (player) {
                     try {
                         const res = await axios.get(`https://tuke-explo-2.onrender.com/api/register/achievements/${player}`);
                         localStorage.setItem("achievements", JSON.stringify(res.data));
