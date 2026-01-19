@@ -33,6 +33,11 @@ public class UserServiceRest {
         return userService.getQuestline(player);
     }
 
+    @GetMapping("/xp/{player}")
+    public int getXp(@PathVariable String player) {
+        return userService.getXp(player);
+    }
+
     @PostMapping("/moveQuestline")
     public void moveQuestline(@RequestBody PlayerRequest request) {
         userService.moveQuestline(request.getPlayer());

@@ -98,4 +98,10 @@ public class UserServiceJPA implements UserService {
             entityManager.merge(user);
         }
     }
+
+    @Override
+    public int getXp(String player) {
+        User user = entityManager.find(User.class, player);
+        return user != null ? user.getXp() : 0;
+    }
 }

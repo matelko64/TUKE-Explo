@@ -29,6 +29,7 @@ function Main() {
     var questline = parseInt(localStorage.getItem("questline"));
     var quest = quests[questline];
     var xp = parseInt(localStorage.getItem("xp"));
+    console.log("xpos: ", xp);
 
     const completeQuest = async () => {
         if (!quest || !player) {
@@ -52,7 +53,12 @@ function Main() {
             xp+=quest.xp;
             localStorage.setItem("xp", xp);
             for (let i=0; i<xpAchievements.length; i++){
-                if(oldXp<xpAchievements[i].xp && xpAchievements[i].xp<=xp){
+                console.log("cycle: ", i);
+                console.log("oldxp: ", oldXp);
+                console.log("xpAchiev: ", xpAchievements[i].xp);
+                console.log("xp: ", xp);
+                if (oldXp<xpAchievements[i].xp && xpAchievements[i].xp<=xp){
+                    console.log("sukses");
                     await axios.post("https://tuke-explo-2.onrender.com/api/register/addAchievement", {
                         player,
                         achievement: [xpAchievements[i].name, xpAchievements[i].description]
@@ -73,9 +79,14 @@ function Main() {
         }
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await completeQuest();
+    };
+
     return (
         <form
-            onSubmit={completeQuest}
+            onSubmit={handleSubmit}
             style={{
                 position: 'relative',
                 height: '60vh',
