@@ -18,6 +18,9 @@ function Main() {
     const [phraseInput, setPhraseInput] = useState("");
     const player = localStorage.getItem("player");
     var questline = parseInt(localStorage.getItem("questline"));
+    console.log(questline);
+    console.log(questline*2);
+    console.log(quests[questline]);
     var quest = quests[questline];
 
     const completeQuest = async () => {
