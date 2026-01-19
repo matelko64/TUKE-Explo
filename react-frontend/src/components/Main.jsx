@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { Button, TextField, Paper, Typography, Box } from '@mui/material';
+import { Button, TextField, Paper, Typography } from '@mui/material';
 
 function Main() {
     const q = (id, requirement, xp, phrase) =>({id, requirement, xp, phrase});
@@ -59,11 +59,17 @@ function Main() {
             alert("Failed to complete quest.");
         }
     };
-    console.log(quest);
-    console.log(parseInt(localStorage.getItem("questline")));
 
     return (
-        <Box sx={{ position: 'relative', height: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <form
+            onSubmit={completeQuest}
+            style={{
+                position: 'relative',
+                height: '60vh',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center' }}>
             {quest ? (
                 <Paper sx={{
                     position: 'absolute',
@@ -74,16 +80,16 @@ function Main() {
                     width: 300,
                     textAlign: 'center'
                 }}>
-                    <Typography variant="h6" sx={{ mb: 1 }}>{quest.requirement}</Typography>
-                    <Typography variant="body2" sx={{ mb: 2 }}>{quest.xp} XP</Typography>
+                    <Typography variant="h6" sx={{mb: 1}}>{quest.requirement}</Typography>
+                    <Typography variant="body2" sx={{mb: 2}}>{quest.xp} XP</Typography>
                     <TextField
                         fullWidth
                         label="Správna odpoveď"
                         value={phraseInput}
                         onChange={(e) => setPhraseInput(e.target.value)}
-                        sx={{ mb: 2 }}
+                        sx={{mb: 2}}
                     />
-                    <Button variant="contained" color="primary" onClick={completeQuest}>Potvrdiť</Button>
+                    <Button type="submit" variant="contained" color="primary">Potvrdiť</Button>
                 </Paper>
             ) : (
                 <Paper sx={{
@@ -99,7 +105,7 @@ function Main() {
                     <Typography variant="body1">Všetky hlavné úlohy si splnil!</Typography>
                 </Paper>
             )}
-        </Box>
+        </form>
     );
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { Button, TextField, Box } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 function Login() {
     const [player, setPlayer] = useState("");
@@ -22,6 +22,22 @@ function Login() {
                         localStorage.setItem("questline", res.data);
                     } catch (err) {
                         console.error("Error fetching questline:", err);
+                    }
+                }
+                if (player) {
+                    try {
+                        const res = await axios.get(`https://tuke-explo-2.onrender.com/api/register/xp/${player}`);
+                        localStorage.setItem("xp", res.data);
+                    } catch (err) {
+                        console.error("Error fetching xp:", err);
+                    }
+                }
+                if (player) {
+                    try {
+                        const res = await axios.get(`https://tuke-explo-2.onrender.com/api/register/achievements/${player}`);
+                        localStorage.setItem("achievements", JSON.stringify(res.data));
+                    } catch (err) {
+                        console.error("Error fetching achievements:", err);
                     }
                 }
                 navigate("/main");

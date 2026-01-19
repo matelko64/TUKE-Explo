@@ -9,4 +9,7 @@ public interface UserService {
     void addXp(String player, int amount);
     void moveQuestline(String player);
     void setUser(User user);
+    String[][] getAchievements(String player);
+    void setAchievements(String player, String[][] achievements);
+    void addAchievement(String player, String[] achievement);
 }

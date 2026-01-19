@@ -11,10 +11,14 @@ public class User implements Serializable {
     private String password;
     private int questline;
     private int xp;
+    @Column(columnDefinition = "text")
+    @Convert(converter = StringArray2DConverter.class)
+    private String[][] achievements;
 
     public User(){
         this.questline = 0;
         this.xp = 0;
+        this.achievements = new String[0][0];
     }
 
     public User(String player, String password) {
@@ -22,6 +26,7 @@ public class User implements Serializable {
         this.password = password;
         this.questline = 0;
         this.xp = 0;
+        this.achievements = new String[0][0];
     }
 
     public void moveQuestline(){this.questline++;}
@@ -43,4 +48,8 @@ public class User implements Serializable {
     public void setQuestline(int questline){this.questline = questline;}
 
     public void setXp(int xp){this.xp = xp;}
+
+    public String[][] getAchievements() { return achievements; }
+
+    public void setAchievements(String[][] achievements) { this.achievements = achievements; }
 }

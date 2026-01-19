@@ -70,4 +70,32 @@ public class UserServiceJPA implements UserService {
             entityManager.merge(user);
         }
     }
+
+    @Override
+    public String[][] getAchievements(String player) {
+        User user = entityManager.find(User.class, player);
+        return user != null ? user.getAchievements() : new String[0][0];
+    }
+
+    @Override
+    public void setAchievements(String player, String[][] achievements) {
+        User user = entityManager.find(User.class, player);
+        if (user != null) {
+            user.setAchievements(achievements);
+            entityManager.merge(user);
+        }
+    }
+
+    @Override
+    public void addAchievement(String player, String[] achievement) {
+        User user = entityManager.find(User.class, player);
+        if (user != null) {
+            String[][] current = user.getAchievements();
+            String[][] newAchievements = new String[current.length + 1][];
+            System.arraycopy(current, 0, newAchievements, 0, current.length);
+            newAchievements[current.length] = achievement;
+            user.setAchievements(newAchievements);
+            entityManager.merge(user);
+        }
+    }
 }
