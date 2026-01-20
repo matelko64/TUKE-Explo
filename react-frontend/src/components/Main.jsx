@@ -3,24 +3,33 @@ import axios from "axios";
 import { Button, TextField, Paper, Typography } from '@mui/material';
 
 function Main() {
-    const aq = (id, name, description) => ({id, name, description});
+    const aq = (id, quests, name, description) => ({id, quests, name, description});
     const ax = (id, xp, name, description) => ({id, xp, name, description});
     const q = (id, requirement, xp, phrase) =>({id, requirement, xp, phrase});
     const questAchievements = [
-        aq(0, "Malý krok pre človeka, malý krok pre ľudstvo", "Splň jednu úlohu."),
-        aq(1, "...sedem osem, devať desať", "Splň desať úloh.")
+        aq(0, 1, "Malý krok pre človeka, malý krok pre ľudstvo", "Splň prvú hlavnú úlohu."),
+        aq(1, 5, "A idemeeee!", "Splň päť hlavných úloh."),
+        aq(2, 10, "Akurát som sa začínal baviť :(", "Splň všetky hlavné úlohy.")
     ];
     const xpAchievements = [
-        ax(0, 500, "Skúseňák", "Získaj 500 XP."),
-        ax(1, 1000, "Šef", "Získaj 1000 XP.")
+        ax(0, 13, "Trinásť, Pán Boh pri násť", "Získaj 13 XP."),
+        ax(1, 50, "Materská škola života", "Získaj 50 XP."),
+        ax(2, 100, "100 ľudí, 100 skúseností", "Získaj 100 XP."),
+        ax(3, 250, "Skúseňák", "Získaj 200 XP."),
+        ax(4, 500, "Senior TUKE Explorer", "Získaj 500 XP."),
+        ax(5, 750, "Všechno vidím, všechno vím", "Získaj všetky XP.")
     ];
     const quests = [
-        q(0, "úloha 1", 100, "odpoved"),
-        q(1, "úloha 2", 200, "odpoved"),
-        q(2, "úloha 3", 300, "odpoved"),
-        q(3, "úloha 4", 400, "odpoved"),
-        q(4, "úloha 5", 500, "odpoved"),
-        q(5, "úloha 6", 600, "odpoved")
+        q(0, "úloha 1", 10, "odpoved"),
+        q(1, "úloha 2", 20, "odpoved"),
+        q(2, "úloha 3", 25, "odpoved"),
+        q(3, "úloha 4", 25, "odpoved"),
+        q(4, "úloha 5", 30, "odpoved"),
+        q(5, "úloha 6", 80, "odpoved"),
+        q(6, "úloha 7", 35, "odpoved"),
+        q(7, "úloha 8", 45, "odpoved"),
+        q(8, "úloha 9", 50, "odpoved"),
+        q(9, "úloha 10", 100, "odpoved")
     ];
     const randomQuests = [
         q(0, "Nájdi miestnosť L9-B514 a zisti posledných 9 cifier vpravo dole na rozvrhu hodín.", 100, "123456789")
@@ -43,13 +52,7 @@ function Main() {
         }
 
         try {
-            await axios.post("https://tuke-explo-2.onrender.com/api/register/addXp", {
-                player,
-                amount: quest.xp
-            });
-            await axios.post("https://tuke-explo-2.onrender.com/api/register/moveQuestline", {player});
-            questline++;
-            localStorage.setItem("questline", questline);
+            await axios.post("https://tuke-explo-2.onrender.com/api/register/addXp", {player, amount: quest.xp});
             const oldXp = xp;
             xp+=quest.xp;
             localStorage.setItem("xp", xp);
@@ -60,6 +63,21 @@ function Main() {
                     await axios.post("https://tuke-explo-2.onrender.com/api/register/addAchievement", {
                         player,
                         achievement: [xpAchievements[i].name, xpAchievements[i].description]
+                    });
+                }
+            }
+
+            await axios.post("https://tuke-explo-2.onrender.com/api/register/moveQuestline", {player});
+            const oldQuestline = questline;
+            questline++;
+            localStorage.setItem("questline", questline);
+            for (let i=0; i<questAchievements.length; i++){
+                if (oldQuestline<questAchievements[i].quests && questAchievements[i].quests<=questline){
+                    achievements.push([questAchievements[i].name, questAchievements[i].description]);
+                    localStorage.setItem("achievements", JSON.stringify(achievements));
+                    await axios.post("https://tuke-explo-2.onrender.com/api/register/addAchievement", {
+                        player,
+                        achievement: [questAchievements[i].name, questAchievements[i].description]
                     });
                 }
             }

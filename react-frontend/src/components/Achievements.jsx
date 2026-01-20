@@ -5,7 +5,7 @@ function Achievements() {
     const achievements = JSON.parse(localStorage.getItem("achievements"));
 
     return (
-        <Box sx={{ p: 3, height: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Box sx={{ p: 3, mt:5, display: 'flex', justifyContent: 'center'}}>
             <Paper sx={{ p: 3, width: 400, textAlign: 'center' }}>
                 <Typography variant="h4" gutterBottom>Míľniky</Typography>
                 <List>
