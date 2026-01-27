@@ -5,7 +5,7 @@ import { Button, TextField, Paper, Typography } from '@mui/material';
 function Main() {
     const aq = (id, quests, name, description) => ({id, quests, name, description});
     const ax = (id, xp, name, description) => ({id, xp, name, description});
-    const q = (id, requirement, xp, phrase) =>({id, requirement, xp, phrase});
+    const q = (id, requirement, image, xp, phrase) =>({id, requirement, image, xp, phrase});
     const questAchievements = [
         aq(0, 1, "Malý krok pre človeka, malý krok pre ľudstvo", "Splň prvú hlavnú úlohu."),
         aq(1, 5, "A idemeeee!", "Splň päť hlavných úloh."),
@@ -20,16 +20,16 @@ function Main() {
         ax(5, 750, "Všechno vidím, všechno vím", "Získaj všetky XP.")
     ];
     const quests = [
-        q(0, "úloha 1", 10, "odpoved"),
-        q(1, "úloha 2", 20, "odpoved"),
-        q(2, "úloha 3", 25, "odpoved"),
-        q(3, "úloha 4", 25, "odpoved"),
-        q(4, "úloha 5", 30, "odpoved"),
-        q(5, "úloha 6", 80, "odpoved"),
-        q(6, "úloha 7", 35, "odpoved"),
-        q(7, "úloha 8", 45, "odpoved"),
-        q(8, "úloha 9", 50, "odpoved"),
-        q(9, "úloha 10", 100, "odpoved")
+        q(0, "úloha 1", "", 10, "odpoved"),
+        q(1, "úloha 2", "", 20, "odpoved"),
+        q(2, "úloha 3", "", 25, "odpoved"),
+        q(3, "úloha 4", "", 25, "odpoved"),
+        q(4, "úloha 5", "", 30, "odpoved"),
+        q(5, "úloha 6", "", 80, "odpoved"),
+        q(6, "úloha 7", "", 35, "odpoved"),
+        q(7, "úloha 8", "", 45, "odpoved"),
+        q(8, "úloha 9", "", 50, "odpoved"),
+        q(9, "úloha 10", "", 100, "odpoved")
     ];
     const randomQuests = [
         q(0, "Nájdi miestnosť L9-B514 a zisti posledných 9 cifier vpravo dole na rozvrhu hodín.", 100, "123456789")
@@ -104,12 +104,11 @@ function Main() {
         <form
             onSubmit={handleSubmit}
             style={{
+                mt: 10,
                 position: 'relative',
-                height: '60vh',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center' }}>
+                justifyContent: 'center'}}>
             {quest ? (
                 <Paper sx={{
                     position: 'absolute',
@@ -117,11 +116,13 @@ function Main() {
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     p: 3,
+                    mt: 35,
                     width: 300,
                     textAlign: 'center'
                 }}>
                     <Typography variant="h6" sx={{mb: 1}}>{quest.requirement}</Typography>
                     <Typography variant="body2" sx={{mb: 2}}>{quest.xp} XP</Typography>
+                    <img src={quest.image} onerror="this.style.display='none'" width={250}/>
                     <TextField
                         fullWidth
                         label="Správna odpoveď"
