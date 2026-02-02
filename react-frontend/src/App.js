@@ -10,6 +10,7 @@ import Login from './components/Login';
 import Main from './components/Main';
 import Profile from './components/Profile';
 import Register from './components/Register';
+import Tutorial from './components/Tutorial';
 
 const darkTheme = createTheme({
   palette: {
@@ -37,11 +38,12 @@ function Layout() {
     <>
       <Box sx={{ pb: shouldShowNav ? 10 : 0 }}>
         <Routes>
-          <Route path="/achievements" element={<Achievements />} />
-          <Route path="/" element={<Login />} />
-          <Route path="/main" element={<Main />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/register" element={<Register />} />
+            <Route path="/achievements" element={<Achievements />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/main" element={<Main />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/tutorial" element={<Tutorial />} />
         </Routes>
       </Box>
       {shouldShowNav && <BottomNav />}

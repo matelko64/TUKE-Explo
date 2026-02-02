@@ -36,7 +36,7 @@ function Login() {
                         console.error("Error fetching achievements:", err);
                     }
                 }
-                navigate("/main");
+                navigate("/tutorial");
             } else {
                 alert("Login failed.");
             }
