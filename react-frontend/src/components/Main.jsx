@@ -20,16 +20,34 @@ function Main() {
         ax(5, 750, "Všechno vidím, všechno vím", "Získaj všetky XP.")
     ];
     const quests = [
-        q(0, "úloha 1", "", 10, "odpoved"),
-        q(1, "úloha 2", "", 20, "odpoved"),
-        q(2, "úloha 3", "", 25, "odpoved"),
-        q(3, "úloha 4", "", 25, "odpoved"),
-        q(4, "úloha 5", "", 30, "odpoved"),
-        q(5, "úloha 6", "", 80, "odpoved"),
-        q(6, "úloha 7", "", 35, "odpoved"),
-        q(7, "úloha 8", "", 45, "odpoved"),
-        q(8, "úloha 9", "", 50, "odpoved"),
-        q(9, "úloha 10", "", 100, "odpoved")
+        q(0, "Zadaj trojpísmenovú skratku, mala by byť rovno nad tebou.", "True", 10, "ard"),
+        q(1, "Nájdi miestnosť L9-B126 a zadaj jej riadny názov.", "", 20, "auditórium a5"),
+        q(2, "Ako sa volá budova, na ktorej je tento streetart?", "True", 25, "centrum vodíkových technológií strojnícka fakulta"),
+        q(3, "Nájdi miestnosť V4-259 a zadaj jej riadny slovenský názov.", "", 25, "zasadacia miestnosť"),
+        q(4, "Čo je napísané priamo pred tebou?", "True", 30, "1952 - 2022 strojnícka fakulta"),
+        q(5, "Nájdi pravý vchod do Auly Volkswagen Slovakia a zadaj aký Comic Sans oznam tam je vylepený.", "", 80, "ani doma by ťa nenapadlo, hádzať smetie pod sedačku"),
+        q(6, "Akej značky je produkt nad tvojou hlavou?", "True", 35, "bosch"),
+        q(7, "Nájdi miestnosť PK19-PC1 a zadaj číslo jej dverí.", "", 45, "103"),
+        q(8, "Aký veľký kovový nápis je napravo od teba?", "True", 50, "deutsche telekom it solutions slovakia"),
+        q(9, "Nájdi miestnosť PK6-PC6 a zadaj číslo jej dverí.", "", 100, "s09"),
+        q(10, "Na fotke je značka rezervovaného parkoviska, aké EČV tam má práve teraz rezervované miesto?", "True", 100, "ke706iz"),
+        q(11, "Nájdi miestnosť CAPRICA a zadaj číslo jej dverí.", "", 100, "b527"),
+        q(12, "Aký nápis je za tebou na dopravnej značke?", "True", 100, "okrem vozidiel s platnou parkovacou kartou"),
+        q(13, "Čo je napísané v druhom riadku pod sklom?", "True", 100, "parameters"),
+        q(14, "Aký je oficiálny názov značky rovno za tebou?", "True", 100, "zákaz vjazdu všetkých vozidiel"),
+        q(15, "Aký nápis je na skle na pravo od teba?", "True", 100, "010 prezentačné centrum"),
+        q(16, "STOP rýchlo-komu?", "True", 100, "rýchlo-kurčatám"),
+        q(17, "Aké bolo krstné meno tohto pána?", "True", 100, "krištof"),
+        q(18, "Aký nápis je na značke rovno pri tebe?", "True", 100, "pešia zóna"),
+        q(19, "Aký nápis je rovno za tebou?", "True", 100, "stavebná fakulta centrum výskumu a inovácií v stavebníctve"),
+        q(20, "Čo je napísané v treťom riadku na ľavej nálepke na elektrickej búdke?", "True", 100, "elektrických zariadení!"),
+        q(21, "Ako sa volá budova priamo za tebou?", "True", 100, "krčma letná"),
+        q(22, "Vľavo za tebou je viacero značiek, čo je napísané v druhom riadku zhora?", "True", 100, "akademická pôda"),
+        q(23, "Aké je číslo najbližšej lampy?", "True", 100, "2 2036"),
+        q(24, "Napravo od teba je busta, čo je napísané v najspodnejšom riadku?", "True", 100, "spisovateľ"),
+        q(25, "Akej značky je auto?", "True", 100, "mh2"),
+        q(26, "Stojíš na priamke medzi touto lampou a značkou ktorá je za tebou. Čo je na značke napísané?", "True", 100, "priestor je chránený kamerovým systémom"),
+        q(27, "Čo je napísané nad kameňom filip?", "", 100, "p"),
     ];
     const randomQuests = [
         q(0, "Nájdi miestnosť L9-B514 a zisti posledných 9 cifier vpravo dole na rozvrhu hodín.", 100, "123456789")
@@ -122,7 +140,14 @@ function Main() {
                 }}>
                     <Typography variant="h6" sx={{mb: 1}}>{quest.requirement}</Typography>
                     <Typography variant="body2" sx={{mb: 2}}>{quest.xp} XP</Typography>
-                    <img src={quest.image} onerror="this.style.display='none'" width={250}/>
+                    {quest.image === "True" && (
+                        <img
+                            src={`/${quest.id + 1}.jpg`}
+                            width={250}
+                        />
+                    )}
+                    <br />
+                    <br />
                     <TextField
                         fullWidth
                         label="Správna odpoveď"
