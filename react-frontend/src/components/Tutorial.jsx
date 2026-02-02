@@ -6,13 +6,22 @@ function Tutorial() {
     const navigate = useNavigate();
 
     const tips = [
-        "Hra je založená na plnení úloh po kampuse TUKE.",
-        "Cieľom hry je nadobudnúť lepšiu orientačnú schopnosť na TUKE",
-        "Obtiažnosť úloh sa stupňuje od najjednoduchšej po najťažšiu.",
-        "Každá úloha ti dá určitý počet XP.",
-        "Za XP aj za počet splnených úloh získavaš achievementy.",
-        "Niektoré úlohy obsahujú obrázok, ktorý ti pomôže nájsť správnu odpoveď.",
-        "Odpoveď vždy zadávaj presne tak, ako je uvedené v nápovede."
+        "Hra je jednoduchá, dostaneš indíciu, nájdi dané miesto a zadaj z toho miesta správnu odpoveď.",
+        "Cieľom hry je zabaviť sa a zlepšiť sa v orientovaní po priestoroch TUKE.",
+        "Obtiažnosť úloh sa postupne zvyšuje.",
+        "Niektoré úlohy obsahujú obrázok, v takom prípade sa snaž postaviť presne na miesto odkiaľ bola fotka spravená.",
+        "Odpoveď vždy zadávaj s diakritikou tak ako je uvedené v nápovede.",
+        <>
+            Pomôcť si môžeš{" "}
+            <a
+                href="https://api.prod.tuke.sk/smb/medias/2025/08/mapa_arealu.jpg?workSpaceId=12"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#1976d2" }}
+            >
+                touto mapou
+            </a>.
+        </>
     ];
 
     return (
@@ -43,9 +52,7 @@ function Tutorial() {
                         bottom: 20,
                         right: 20
                     }}
-                >
-                    Preskočiť
-                </Button>
+                >Ďalej</Button>
             </Paper>
         </div>
     );
